@@ -5,8 +5,12 @@
 
 
 int main() {
-	char *s1 = ft_strdup("kossa");
-	char *s2 = ft_strdup("ysso");
-	printf("%s\n", ft_strjoin(s1, s2));
+	int fd;
+	fd = open("/Users/zech-chi/Desktop/get_next_line/testfiles/file.txt", O_RDONLY);
+	static char buff[0];
+	printf("%d\n", fd);
+	int r = read(fd, buff, 5);
+	printf("%s\n", buff);
+	printf("%d\n", r);
 	return (0);
 }
