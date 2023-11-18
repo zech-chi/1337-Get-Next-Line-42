@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 11:19:56 by zech-chi          #+#    #+#             */
-/*   Updated: 2023/11/18 12:11:18 by zech-chi         ###   ########.fr       */
+/*   Updated: 2023/11/18 16:03:59 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,13 @@ size_t	ft_strlen(char *str)
 char	*ft_strdup(char *str)
 {
 	char	*s_dup;
-	size_t	s_len;
 	size_t	i;
 
-	s_len = ft_strlen(str);
-	s_dup = malloc(s_len + 1);
-	if (s_dup == NULL)
+	s_dup = malloc(ft_strlen(str) + 1);
+	if (!s_dup)
 		return (NULL);
 	i = -1;
-	while (++i < s_len)
+	while (str[++i])
 		s_dup[i] = str[i];
 	s_dup[i] = '\0';
 	return (s_dup); 
