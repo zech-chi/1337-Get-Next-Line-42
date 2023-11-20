@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 11:20:14 by zech-chi          #+#    #+#             */
-/*   Updated: 2023/11/18 12:26:24 by zech-chi         ###   ########.fr       */
+/*   Updated: 2023/11/20 21:16:35 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdio.h>
 
 size_t	ft_strlen(char *str);
 char	*ft_strdup(char *str);
