@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 11:19:56 by zech-chi          #+#    #+#             */
-/*   Updated: 2023/11/18 16:03:59 by zech-chi         ###   ########.fr       */
+/*   Updated: 2023/11/21 09:13:06 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	size_t	i;
 	size_t	j;
 
-	if (!s1 && !s2)
+	if ((!s1 && !s2))
 		return (NULL);
 	if (!s1)
 		return (s2);

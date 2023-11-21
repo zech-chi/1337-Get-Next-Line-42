@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 14:36:27 by zech-chi          #+#    #+#             */
-/*   Updated: 2023/11/20 22:26:43 by zech-chi         ###   ########.fr       */
+/*   Updated: 2023/11/21 09:13:33 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	shift_it(char	*buff, size_t j)
 
 // 1 line has been completed
 // 0 line hasn't been completed
-int	has_the_end(char *buff, char *line)
+int	has_the_end(char *buff, char **line)
 {
 	size_t	i;
 	size_t	j;
@@ -40,7 +40,7 @@ int	has_the_end(char *buff, char *line)
 	}
 	if (i == BUFFER_SIZE || buff[i] == '\0')
 	{
-		line = ft_strjoin(line, ft_strdup(buff));
+		*line = ft_strjoin(*line, ft_strdup(buff));
 		shift_it(buff, BUFFER_SIZE);
 		return (0);
 	}
@@ -52,7 +52,7 @@ int	has_the_end(char *buff, char *line)
 		temp[j] = buff[j];
 	temp[j++] = '\n';
 	temp[j] = '\0';
-	line = ft_strjoin(line, temp);
+	*line = ft_strjoin(*line, temp);
 	shift_it(buff, i + 1);
 	return (1);
 }
@@ -62,19 +62,32 @@ char	*get_next_line(int fd)
 	static char buff[BUFFER_SIZE + 1];
 	char	*line;
 	int	read_did_it_job;
-	int	the_end_has_been_founded;
+	int	the_end_founded;
 
+	if (fd == -1 || BUFFER_SIZE <= 0)
+		return (NULL);
 	line = NULL;
-	if (has_the_end(buff, line))
+	if (has_the_end(buff, &line))
 		return (line);
 	read_did_it_job = read(fd, buff, BUFFER_SIZE);
-	the_end_has_been_founded = has_the_end(buff, line);
-	printf("%s", line);
-	while (read_did_it_job > 0 && !the_end_has_been_founded)
+	the_end_founded = has_the_end(buff, &line);
+	while (read_did_it_job > 0 && !the_end_founded)
 	{
 		read_did_it_job = read(fd, buff, BUFFER_SIZE);
-		the_end_has_been_founded = has_the_end(buff, line);
-		printf("%s", line);
+		the_end_founded = has_the_end(buff, &line);
+	}
+	if (read_did_it_job == -1)
+	{
+		shift_it(buff, BUFFER_SIZE);
+		if (line)
+			free(line);
+		return (NULL);
+	}
+	if (ft_strlen(line) == 0)
+	{
+		if (line)
+			free(line);
+		return (NULL);
 	}
 	return (line);
 }
