@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 14:36:27 by zech-chi          #+#    #+#             */
-/*   Updated: 2023/11/21 10:58:02 by zech-chi         ###   ########.fr       */
+/*   Updated: 2023/11/21 16:56:54 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,17 @@ char	*get_next_line(int fd)
 {
 	static char	buff[BUFFER_SIZE + 1];
 	char		*line;
-	int			read_did_it_job;
+	int			r;
 
-	if (fd == -1 || BUFFER_SIZE <= 0)
+	if (fd < -1 || fd > OPEN_MAX || BUFFER_SIZE <= 0)
 		return (NULL);
 	line = NULL;
 	if (has_the_end(buff, &line))
 		return (line);
-	while ((read_did_it_job = read(fd, buff, BUFFER_SIZE)) > 0
-		&& !(has_the_end(buff, &line)));
-	if (read_did_it_job == -1 || (line && ft_strlen(line) == 0))
+	r = read(fd, buff, BUFFER_SIZE);
+	while (r > 0 && !(has_the_end(buff, &line)))
+		r = read(fd, buff, BUFFER_SIZE);
+	if (r == -1 || (line && ft_strlen(line) == 0))
 	{
 		if (line)
 			free(line);
