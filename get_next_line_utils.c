@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 11:19:56 by zech-chi          #+#    #+#             */
-/*   Updated: 2023/11/21 20:09:56 by zech-chi         ###   ########.fr       */
+/*   Updated: 2023/11/21 21:33:31 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,43 @@ char	*ft_strjoin(char *s1, char *s2)
 	free(s1);
 	free(s2);
 	return (new_s);
+}
+
+void	shift_buff_or_clean_it(char *buff, size_t j)
+{
+	size_t	i;
+
+	i = 0;
+	while (j < BUFFER_SIZE)
+		buff[i++] = buff[j++];
+	while (i < BUFFER_SIZE)
+		buff[i++] = 0;
+}
+
+int	has_the_end(char *buff, char **line)
+{
+	size_t	i;
+	size_t	j;
+	char	*temp;
+
+	i = 0;
+	while (i < BUFFER_SIZE && buff[i] != '\0' && buff[i] != '\n')
+		i++;
+	if (i == BUFFER_SIZE || buff[i] == '\0')
+	{
+		*line = ft_strjoin(*line, ft_strdup(buff));
+		shift_buff_or_clean_it(buff, BUFFER_SIZE);
+		return (0);
+	}
+	temp = malloc(i + 2);
+	if (!temp)
+		return (1);
+	j = -1;
+	while (++j < i)
+		temp[j] = buff[j];
+	temp[j++] = '\n';
+	temp[j] = '\0';
+	*line = ft_strjoin(*line, temp);
+	shift_buff_or_clean_it(buff, i + 1);
+	return (1);
 }

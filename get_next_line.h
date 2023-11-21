@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 11:20:14 by zech-chi          #+#    #+#             */
-/*   Updated: 2023/11/21 20:27:33 by zech-chi         ###   ########.fr       */
+/*   Updated: 2023/11/21 21:33:42 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@
 # include <stdio.h>
 # include <limits.h>
 
+char	*get_next_line(int fd);
 size_t	ft_strlen(char *str);
 char	*ft_strdup(char *str);
 char	*ft_strjoin(char *s1, char *s2);
-void	shift_it(char	*buff, size_t j);
-char	*get_next_line(int fd);
+void	shift_buff_or_clean_it(char *buff, size_t j);
 int		has_the_end(char *buff, char **line);
 
 #endif
