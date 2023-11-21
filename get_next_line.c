@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 14:36:27 by zech-chi          #+#    #+#             */
-/*   Updated: 2023/11/21 09:13:33 by zech-chi         ###   ########.fr       */
+/*   Updated: 2023/11/21 10:58:02 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ void	shift_it(char	*buff, size_t j)
 		buff[i++] = 0;
 }
 
-// 1 line has been completed
-// 0 line hasn't been completed
 int	has_the_end(char *buff, char **line)
 {
 	size_t	i;
@@ -32,12 +30,8 @@ int	has_the_end(char *buff, char **line)
 	char	*temp;
 
 	i = 0;
-	while (i < BUFFER_SIZE)
-	{
-		if (buff[i] == '\n' || buff[i] == '\0')
-			break;
+	while (i < BUFFER_SIZE && buff[i] != '\0' && buff[i] != '\n')
 		i++;
-	}
 	if (i == BUFFER_SIZE || buff[i] == '\0')
 	{
 		*line = ft_strjoin(*line, ft_strdup(buff));
@@ -59,31 +53,18 @@ int	has_the_end(char *buff, char **line)
 
 char	*get_next_line(int fd)
 {
-	static char buff[BUFFER_SIZE + 1];
-	char	*line;
-	int	read_did_it_job;
-	int	the_end_founded;
+	static char	buff[BUFFER_SIZE + 1];
+	char		*line;
+	int			read_did_it_job;
 
 	if (fd == -1 || BUFFER_SIZE <= 0)
 		return (NULL);
 	line = NULL;
 	if (has_the_end(buff, &line))
 		return (line);
-	read_did_it_job = read(fd, buff, BUFFER_SIZE);
-	the_end_founded = has_the_end(buff, &line);
-	while (read_did_it_job > 0 && !the_end_founded)
-	{
-		read_did_it_job = read(fd, buff, BUFFER_SIZE);
-		the_end_founded = has_the_end(buff, &line);
-	}
-	if (read_did_it_job == -1)
-	{
-		shift_it(buff, BUFFER_SIZE);
-		if (line)
-			free(line);
-		return (NULL);
-	}
-	if (ft_strlen(line) == 0)
+	while ((read_did_it_job = read(fd, buff, BUFFER_SIZE)) > 0
+		&& !(has_the_end(buff, &line)));
+	if (read_did_it_job == -1 || (line && ft_strlen(line) == 0))
 	{
 		if (line)
 			free(line);
