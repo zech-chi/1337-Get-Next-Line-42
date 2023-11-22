@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/18 11:19:56 by zech-chi          #+#    #+#             */
-/*   Updated: 2023/11/22 19:08:52 by zech-chi         ###   ########.fr       */
+/*   Created: 2023/11/22 14:35:07 by zech-chi          #+#    #+#             */
+/*   Updated: 2023/11/22 19:23:08 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 size_t	ft_strlen(char *str)
 {
