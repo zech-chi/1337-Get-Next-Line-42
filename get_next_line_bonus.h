@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 14:35:10 by zech-chi          #+#    #+#             */
-/*   Updated: 2023/11/22 17:58:07 by zech-chi         ###   ########.fr       */
+/*   Updated: 2023/11/22 23:22:26 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>
 # include <limits.h>
 
 char	*get_next_line(int fd);
