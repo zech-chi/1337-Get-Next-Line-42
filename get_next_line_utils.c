@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 11:19:56 by zech-chi          #+#    #+#             */
-/*   Updated: 2023/11/22 19:08:52 by zech-chi         ###   ########.fr       */
+/*   Updated: 2023/11/23 15:46:58 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ void	shift_buff_or_clean_it(char *buff, size_t right)
 	left = 0;
 	while (right < BUFFER_SIZE)
 		buff[left++] = buff[right++];
-	while (left < BUFFER_SIZE)
-		buff[left++] = 0;
+	while (left < BUFFER_SIZE && buff[left])
+		buff[left++] = '\0';
 }
 
 int	has_the_end(char *buff, char **line)

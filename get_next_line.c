@@ -6,7 +6,7 @@
 /*   By: zech-chi <zech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 14:36:27 by zech-chi          #+#    #+#             */
-/*   Updated: 2023/11/22 18:42:27 by zech-chi         ###   ########.fr       */
+/*   Updated: 2023/11/23 16:10:41 by zech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*get_next_line(int fd)
 	int			r;
 	int			e;
 
-	if (fd < -1 || fd > OPEN_MAX || BUFFER_SIZE <= 0)
+	if (fd < 0 || fd >= OPEN_MAX || BUFFER_SIZE <= 0 || BUFFER_SIZE >= INT_MAX)
 		return (NULL);
 	line = NULL;
 	if (has_the_end(buff, &line))
